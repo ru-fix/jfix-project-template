@@ -19,8 +19,8 @@ buildscript {
         classpath(Libs.kotlin_jdk8)
         classpath(Libs.kotlin_reflect)
 
-        //<buildscript-dependencies>
-        //</buildscript-dependencies>
+        //<buildscriptDependencies>
+        //</buildscriptDependencies>
     }
 }
 
@@ -33,7 +33,6 @@ plugins {
     id("de.undercouch.download") version "4.0.0"
 
     //<plugins>
-
     //</plugins>
 }
 
