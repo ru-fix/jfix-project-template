@@ -33,6 +33,7 @@ plugins {
     id("de.undercouch.download") version "4.0.0"
 
     //<plugins>
+
     //</plugins>
 }
 
@@ -224,5 +225,5 @@ tasks {
     }
 }
 
-//<root>
-//</root>
+//<build>
+//</build>
