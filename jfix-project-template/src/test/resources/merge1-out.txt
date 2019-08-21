@@ -16,11 +16,12 @@ buildscript {
         classpath(Libs.gradle_release_plugin)
         classpath(Libs.dokka_gradle_plugin)
         classpath(Libs.kotlin_stdlib)
-        classpath(Libs.kotlin_jdk8)
+        classpath(Libs.kotlin_jdk9)
         classpath(Libs.kotlin_reflect)
 
-        //<buildscript-dependencies>
-        //</buildscript-dependencies>
+        //<buildscriptDependencies>
+        my-buildscript-dependencies-here
+        //</buildscriptDependencies>
     }
 }
 
@@ -33,6 +34,7 @@ plugins {
     id("de.undercouch.download") version "4.0.0"
 
     //<plugins>
+    my-plugins-here
     //</plugins>
 }
 
@@ -219,10 +221,13 @@ tasks {
         doLast {
             with(ProjectTemplate()) {
                 mergeBuild(tmpDir.resolve(f_build), project.rootDir.resolve(f_build))
+                mergeDependencies(tmpDir.resolve(f_dependencies), project.rootDir.resolve("$f_dependenciesDir/$f_dependencies"))
             }
+
         }
     }
 }
 
-//<root>
-//</root>
+//<build>
+my-build-here
+//</build>

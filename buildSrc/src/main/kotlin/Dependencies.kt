@@ -4,7 +4,7 @@ object Vers {
     val gradle_release_plugin = "1.3.9"
 
     //Dependencies
-    val kotlin = "1.3.30"
+    val kotlin = "1.3.41"
     val kotlin_coroutines = "1.2.1"
     val junit = "5.2.0"
     val sl4j = "1.7.25"
