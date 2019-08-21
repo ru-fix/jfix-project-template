@@ -207,7 +207,7 @@ tasks {
 
         doLast {
             logger.lifecycle("Override $f_build")
-            tmpDir.resolve(f_build).copyTo(project.rootDir, overwrite=true)
+            tmpDir.resolve(f_build).copyTo(project.rootDir.resolve(f_build), overwrite=true)
         }
     }
 }
