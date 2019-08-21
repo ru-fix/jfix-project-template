@@ -101,9 +101,9 @@ subprojects {
         dependsOn(dokkaTask)
     }
 
-    configure<NexusPublishExtension>{
-        repositories{
-            sonatype{
+    configure<NexusPublishExtension> {
+        repositories {
+            sonatype {
                 username.set("$repositoryUser")
                 password.set("$repositoryPassword")
                 useStaging.set(true)
@@ -129,7 +129,7 @@ subprojects {
                     }
                 }
 
-                create<MavenPublication>("maven"){
+                create<MavenPublication>("maven") {
                     from(components["java"])
 
                     artifact(sourcesJar)
@@ -191,20 +191,23 @@ subprojects {
 }
 
 tasks {
-    register<Download>("updateProjectTemplate"){
+    register<Download>("updateProjectTemplate") {
         description = "Update project template files from github jfix-project-template repository"
         group = "JFix Project Template"
 
-        doFirst {
-            logger.info("update project template")
-        }
+        val tmpDir = project.buildDir.resolve("jfix-tempalte").also { it.mkdir() }
+        val f_build = "build.gradle.kts"
 
-        src("https://raw.githubusercontent.com/ru-fix/jfix-project-template/master/README.md")
-        dest(project.buildDir.resolve("jfix-tempalte").also { it.mkdir() })
+        src(listOf(
+                f_build)
+                .map {
+                    "https://raw.githubusercontent.com/ru-fix/jfix-project-template/master/$it"
+                })
+        dest(tmpDir)
 
-
-        doLast{
-            logger.info("Updated")
+        doLast {
+            logger.lifecycle("Override $f_build")
+            tmpDir.resolve(f_build).copyTo(project.rootDir, overwrite=true)
         }
     }
 }
