@@ -208,8 +208,7 @@ tasks {
         dest(tmpDir)
 
         doLast {
-            logger.lifecycle("Override $f_build")
-            tmpDir.resolve(f_build).copyTo(project.rootDir.resolve(f_build), overwrite=true)
+            logger.lifecycle("Update $f_build")
         }
     }
 }
