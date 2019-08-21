@@ -21,6 +21,14 @@ buildscript {
     }
 }
 
+plugins {
+    kotlin("jvm") version Vers.kotlin apply false
+    signing
+    `maven-publish`
+    id(Libs.nexus_publish_plugin) version "0.3.0" apply false
+    id(Libs.nexus_staging_plugin) version "0.21.0"
+    id("de.undercouch.download") version "4.0.0"
+}
 
 /**
  * Project configuration by properties and environment
@@ -40,16 +48,6 @@ val repositoryUrl by envConfig()
 val signingKeyId by envConfig()
 val signingPassword by envConfig()
 val signingSecretKeyRingFile by envConfig()
-
-
-plugins {
-    kotlin("jvm") version Vers.kotlin apply false
-    signing
-    `maven-publish`
-    id(Libs.nexus_publish_plugin) version "0.3.0" apply false
-    id(Libs.nexus_staging_plugin) version "0.21.0"
-    id("de.undercouch.download") version "4.0.0"
-}
 
 nexusStaging {
     packageGroup = "ru.fix"
@@ -199,16 +197,20 @@ tasks {
 
         val tmpDir = project.buildDir.resolve("jfix-tempalte").also { it.mkdir() }
         val f_build = "build.gradle.kts"
+        val f_dependencies = "buildSrc/src/main/kotlin/Dependencies.kt"
 
         src(listOf(
-                f_build)
+                f_build,
+                f_dependencies)
                 .map {
                     "https://raw.githubusercontent.com/ru-fix/jfix-project-template/master/$it"
                 })
         dest(tmpDir)
 
         doLast {
+            //TODO
             logger.lifecycle("Update $f_build")
+            logger.lifecycle("Update $f_dependencies")
         }
     }
 }
