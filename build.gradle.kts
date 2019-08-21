@@ -7,9 +7,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-val githubProjectName = "jfix-stdlib"
-
-
 buildscript {
     repositories {
         jcenter()
@@ -138,7 +135,7 @@ subprojects {
                     pom {
                         name.set("${project.group}:${project.name}")
                         description.set("https://github.com/ru-fix/")
-                        url.set("https://github.com/ru-fix/$githubProjectName")
+                        url.set("https://github.com/ru-fix/${rootProject.name}")
                         licenses {
                             license {
                                 name.set("The Apache License, Version 2.0")
@@ -153,9 +150,9 @@ subprojects {
                             }
                         }
                         scm {
-                            url.set("https://github.com/ru-fix/$githubProjectName")
-                            connection.set("https://github.com/ru-fix/$githubProjectName.git")
-                            developerConnection.set("https://github.com/ru-fix/$githubProjectName.git")
+                            url.set("https://github.com/ru-fix/${rootProject.name}")
+                            connection.set("https://github.com/ru-fix/${rootProject.name}.git")
+                            developerConnection.set("https://github.com/ru-fix/${rootProject.name}.git")
                         }
                     }
                 }
