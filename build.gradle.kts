@@ -18,9 +18,6 @@ buildscript {
         classpath(Libs.kotlin_stdlib)
         classpath(Libs.kotlin_jdk8)
         classpath(Libs.kotlin_reflect)
-
-        //<buildscriptDependencies>
-        //</buildscriptDependencies>
     }
 }
 
@@ -31,9 +28,6 @@ plugins {
     id(Libs.nexus_publish_plugin) version "0.3.0" apply false
     id(Libs.nexus_staging_plugin) version "0.21.0"
     id("de.undercouch.download") version "4.0.0"
-
-    //<plugins>
-    //</plugins>
 }
 
 /**
@@ -160,9 +154,9 @@ subprojects {
                         }
                     }
                 }
-            }//publications
-        }//publishing
-    }//afterEvaluate
+            }
+        }
+    }
 
     configure<SigningExtension> {
         if (!signingKeyId.isNullOrEmpty()) {
@@ -195,34 +189,3 @@ subprojects {
         }
     }
 }
-
-tasks {
-    register<Download>("updateProjectTemplate") {
-        description = "Update project template files from github jfix-project-template repository"
-        group = "JFix Project Template"
-
-        val tmpDir = project.buildDir.resolve("jfix-tempalte").also { it.mkdir() }
-        val baseUrl = "https://raw.githubusercontent.com/ru-fix/jfix-project-template/master/"
-
-        val f_build = "build.gradle.kts"
-        val f_dependencies = "Dependencies.kt"
-        val f_dependenciesDir = "buildSrc/src/main/kotlin"
-
-        src(listOf(
-                "$f_build",
-                "$f_dependenciesDir/$f_dependencies")
-                .map {
-                    "$baseUrl$it"
-                })
-        dest(tmpDir)
-
-        doLast {
-            with(ProjectTemplate()) {
-                mergeBuild(tmpDir.resolve(f_build), project.rootDir.resolve(f_build))
-            }
-        }
-    }
-}
-
-//<build>
-//</build>
