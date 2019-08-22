@@ -1,5 +1,4 @@
 import de.marcphilipp.gradle.nexus.NexusPublishExtension
-import de.undercouch.gradle.tasks.download.Download
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.dokka.gradle.DokkaTask
