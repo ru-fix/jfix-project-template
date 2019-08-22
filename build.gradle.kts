@@ -130,7 +130,7 @@ subprojects {
 
                     pom {
                         name.set("${project.group}:${project.name}")
-                        description.set("https://github.com/ru-fix/")
+                        description.set("https://github.com/ru-fix/${rootProject.name}")
                         url.set("https://github.com/ru-fix/${rootProject.name}")
                         licenses {
                             license {
