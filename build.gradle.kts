@@ -26,7 +26,6 @@ plugins {
     `maven-publish`
     id(Libs.nexus_publish_plugin) version "0.3.0" apply false
     id(Libs.nexus_staging_plugin) version "0.21.0"
-    id("de.undercouch.download") version "4.0.0"
 }
 
 /**
@@ -184,6 +183,11 @@ subprojects {
                 events(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
                 showStandardStreams = true
                 exceptionFormat = TestExceptionFormat.FULL
+            }
+        }
+        withType<KotlinCompile>{
+            kotlinOptions {
+                jvmTarget = "1.8"
             }
         }
     }
