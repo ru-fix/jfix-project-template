@@ -5,7 +5,7 @@ object Vers {
 
     //Dependencies
     val kotlin = "1.3.41"
-    val kotlin_coroutines = "1.2.1"
+    val kotlin_coroutines = "1.2.2"
     val junit = "5.2.0"
     val sl4j = "1.7.25"
 }
