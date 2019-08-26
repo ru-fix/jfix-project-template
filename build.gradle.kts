@@ -188,23 +188,26 @@ subprojects {
                 exceptionFormat = TestExceptionFormat.FULL
             }
         }
-        withType<KotlinCompile>{
+        withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "1.8"
             }
         }
-        withType<AsciidoctorTask> {
-            sourceDir = project.file("asciidoc")
-            resources(closureOf<CopySpec> {
-                from("asciidoc")
-                include("**/*.png")
-            })
-            doLast {
-                copy {
-                    from(outputDir.resolve("html5"))
-                    into(project.file("docs"))
-                    include("**/*.html", "**/*.png")
-                }
+    }
+}
+
+tasks {
+    withType<AsciidoctorTask> {
+        sourceDir = project.file("asciidoc")
+        resources(closureOf<CopySpec> {
+            from("asciidoc")
+            include("**/*.png")
+        })
+        doLast {
+            copy {
+                from(outputDir.resolve("html5"))
+                into(project.file("docs"))
+                include("**/*.html", "**/*.png")
             }
         }
     }
