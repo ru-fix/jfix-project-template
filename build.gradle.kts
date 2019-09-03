@@ -175,7 +175,9 @@ subprojects {
 
     tasks {
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
         }
         withType<Test> {
             useJUnitPlatform()
@@ -186,11 +188,6 @@ subprojects {
                 events(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
                 showStandardStreams = true
                 exceptionFormat = TestExceptionFormat.FULL
-            }
-        }
-        withType<KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8"
             }
         }
     }
