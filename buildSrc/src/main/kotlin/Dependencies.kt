@@ -36,3 +36,11 @@ object Libs {
 
     val hamkrest = "com.natpryce:hamkrest:1.7.0.0"
 }
+
+enum class Projs{
+    jfix_project_template,
+    jfix_project_template_subproject;
+
+    val directory get() = this.name.replace('_', '-')
+    val dependency get(): String = ":$directory"
+}
