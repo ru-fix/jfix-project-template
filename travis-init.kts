@@ -18,7 +18,11 @@ val secureItems = listOf("repositoryUrl", "repositoryUser", "repositoryPassword"
 
 println("Found:")
 for (item in secureItems) {
-    println("$item=${gradleProperties[item]}")
+    val value = gradleProperties[item]
+    println("$item=$value")
+    requireNotNull(value){
+        "Property $item should not be null"
+    }
 }
 
 println("Encrypt properties")
