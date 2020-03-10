@@ -38,9 +38,8 @@ object Libs {
 }
 
 enum class Projs{
-    jfix_project_template,
-    jfix_project_template_subproject;
+    `jfix-project-template-subproject`;
 
-    val directory get() = this.name.replace('_', '-')
-    val dependency get(): String = ":$directory"
+
+    val dependency get(): String = ":$name"
 }

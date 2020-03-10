@@ -1,5 +1,7 @@
 rootProject.name = "jfix-project-template"
 
-Projs.values().forEach {
-    include(it.directory)
+for(project in listOf(
+        "jfix-project-template-subproject")) {
+
+    include(project)
 }
