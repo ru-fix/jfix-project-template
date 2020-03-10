@@ -6,6 +6,8 @@ import java.nio.file.Files.newInputStream
 import java.nio.file.Paths
 import java.util.*
 
+println("Please, login to travis before running this script")
+println("travis login --com")
 
 println("Travis version: ${execute("travis", "version")}")
 val userHome = System.getProperty("user.home")
@@ -51,7 +53,7 @@ if (Files.exists(secringFileEnc)) {
 
 val fileEncryptionOutput = execute("travis", "encrypt-file", secringFile)
 println("looking for key in output:\n $fileEncryptionOutput")
-val key = "\$encrypted_([^_]+)_key".toRegex().find(fileEncryptionOutput)!!.groupValues[1]
+val key = "encrypted_([^_]+)_key".toRegex().find(fileEncryptionOutput)!!.groupValues[1]
 
 println("#build")
 println("before_script: if [[ \$encrypted_${key}_key ]]; then openssl aes-256-cbc -K \$encrypted_${key}_key -iv \$encrypted_${key}_iv -in secring.gpg.enc -out secring.gpg -d; fi")

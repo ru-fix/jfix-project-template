@@ -3,12 +3,15 @@ object Vers {
     val dokkav = "0.9.18"
     val gradle_release_plugin = "1.3.15"
     val asciidoctor = "1.5.9.2"
+    val allure_plugin = "2.8.1"
+    val allure_cli = "2.13.1"
 
     //Dependencies
     val kotlin = "1.3.61"
     val kotlin_coroutines = "1.3.4"
     val junit = "5.6.0"
     val sl4j = "1.7.30"
+    const val log4j =  "2.13.1"
 }
 
 object Libs {
@@ -25,8 +28,10 @@ object Libs {
     val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${Vers.kotlin}"
     val kotlinx_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Vers.kotlin_coroutines}"
 
-    val slf4j_api = "org.slf4j:slf4j-api:${Vers.sl4j}"
-    val slf4j_simple = "org.slf4j:slf4j-simple:${Vers.sl4j}"
+    const val slf4j_api = "org.slf4j:slf4j-api:${Vers.sl4j}"
+    const val log4j_core = "org.apache.logging.log4j:log4j-core:${Vers.log4j}"
+    const val slf4j_over_log4j = "org.apache.logging.log4j:log4j-slf4j-impl:${Vers.log4j}"
+    const val mu_kotlin_logging = "io.github.microutils:kotlin-logging:1.7.8"
 
     val kotlin_logging = "io.github.microutils:kotlin-logging:1.7.8"
 
@@ -34,7 +39,6 @@ object Libs {
     val junit_params = "org.junit.jupiter:junit-jupiter-params:${Vers.junit}"
     val junit_engine = "org.junit.jupiter:junit-jupiter-engine:${Vers.junit}"
 
-    val hamkrest = "com.natpryce:hamkrest:1.7.0.0"
 }
 
 enum class Projs{
