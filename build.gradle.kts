@@ -112,7 +112,8 @@ subprojects {
                 useStaging.set(true)
             }
         }
-        clientTimeout.set(Duration.of(3, ChronoUnit.MINUTES))
+        clientTimeout.set(Duration.of(4, ChronoUnit.MINUTES))
+        connectTimeout.set(Duration.of(4, ChronoUnit.MINUTES))
     }
 
     project.afterEvaluate {
