@@ -16,7 +16,7 @@ jobs:
       if: tag =~ ^\d+\.\d+\.\d+$
       install: skip
       before_script: #SCRIPT HERE
-      script: ./gradlew clean build publishToSonatype closeAndReleaseRepository
+      script: ./gradlew -Dorg.gradle.internal.publish.checksums.insecure=true --info clean build publishToSonatype closeAndReleaseRepository
 env:
   global:
     - signingSecretKeyRingFile="`pwd`/secring.gpg"
