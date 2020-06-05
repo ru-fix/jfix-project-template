@@ -73,14 +73,15 @@ PATH=$PATH:/usr/local/bin
 ```
 Login to travis site with github account.
 Ensure that you can see list of github repositories in travis site.
+Activate github repository  within travis.
 Then login to travis from console.
 ```
 travis login --pro
 ```
- 
+Change current workgin directory to your checkouted github repository folder.  
 Encrypt `secring.gpg` and add it to your project repository `secring.gpg.enc`
 ```
-travis encrypt-file secring.gpg 
+travis encrypt-file --pro secring.gpg 
 ``` 
 Add decoding script into setup section of `.travis.yml`
 ```
@@ -105,14 +106,15 @@ env:
   - secure: "MpiifWpBpsDfZ4OnQna/yRD4JaKXr9VvPXT4Ik0Njc/6y3BBGOsytXj4
 
 ```
+Instead of manually encrypting and writing all properties you can use `travis-init.kts` script.
 
-## Generate .travis.yml
+## travis-init.kts script
 Script 
 - encrypt gradle properties
 - encrypt secring.gpg key store
 - generate `.travis.yml` tempalte
 
-`jfix-github-project-template/jfix-github-project-tempalte.py`
+`travis-init.kts`
 
 
 
