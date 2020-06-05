@@ -72,9 +72,10 @@ sudo gem install travis
 PATH=$PATH:/usr/local/bin
 ```
 Login to travis site with github account.
+Ensure that you can see list of github repositories in travis site.
 Then login to travis from console.
 ```
-travis login
+travis login --pro
 ```
  
 Encrypt `secring.gpg` and add it to your project repository `secring.gpg.enc`
