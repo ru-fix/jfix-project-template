@@ -7,13 +7,23 @@ plugins {
 }
 
 dependencies {
-    implementation(Libs.slf4j_api)
+    // Kotlin
     implementation(Libs.kotlin_jdk8)
     implementation(Libs.kotlin_stdlib)
     implementation(Libs.kotlin_reflect)
 
-    testImplementation(Libs.hamkrest)
+    // Logging
+    implementation(Libs.log4j_kotlin)
+
+    // Testing
+    //  Junit
     testImplementation(Libs.junit_api)
     testRuntimeOnly(Libs.junit_engine)
-    testRuntimeOnly(Libs.slf4j_simple)
+    //  Kotest
+    testImplementation(Libs.kotest_assertions_core_jvm)
+    //  Mocking
+    testImplementation(Libs.mockk)
+    //  Test Logging
+    testRuntimeOnly(Libs.log4j_core)
+    testRuntimeOnly(Libs.slf4j_over_log4j)
 }

@@ -1,10 +1,9 @@
-import com.natpryce.hamkrest.assertion.assertThat
-import com.natpryce.hamkrest.equalTo
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-class MyServiceTest{
+class MyServiceTest {
     @Test
-    fun test(){
-        assertThat(MyService().hello(), equalTo("hello"))
+    fun test() {
+        MyService().hello() shouldBe "hello"
     }
 }
