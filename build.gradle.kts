@@ -17,11 +17,9 @@ buildscript {
     }
     dependencies {
         classpath(Libs.gradle_release_plugin)
-        classpath(Libs.dokka_gradle_plugin)
-        classpath(Libs.kotlin_stdlib)
-        classpath(Libs.kotlin_jdk8)
-        classpath(Libs.kotlin_reflect)
-        classpath(Libs.asciidoctor)
+        classpath(Libs.dokka_plugin)
+        classpath(Libs.asciidoctor_plugin)
+        classpath(kotlin("gradle-plugin", version = Vers.kotlin))
     }
 }
 
@@ -29,9 +27,9 @@ plugins {
     kotlin("jvm") version Vers.kotlin apply false
     signing
     `maven-publish`
-    id(Libs.nexus_publish_plugin) version "0.4.0" apply false
-    id(Libs.nexus_staging_plugin) version "0.21.2"
-    id("org.asciidoctor.convert") version Vers.asciidoctor
+    id(Libs.nexus_publish_plugin_id) version Vers.nexus_publish_plugin apply false
+    id(Libs.nexus_staging_plugin_id) version Vers.nexus_staging_plugin
+    id(Libs.asciidoctor_plugin_id) version Vers.asciidoctor_plugin
 }
 
 /**
@@ -73,7 +71,7 @@ subprojects {
         plugin("signing")
         plugin("java")
         plugin("org.jetbrains.dokka")
-        plugin(Libs.nexus_publish_plugin)
+        plugin(Libs.nexus_publish_plugin_id)
     }
 
     repositories {
@@ -83,7 +81,7 @@ subprojects {
     }
 
     val sourcesJar by tasks.creating(Jar::class) {
-        classifier = "sources"
+        archiveClassifier.set("sources")
         from("src/main/java")
         from("src/main/kotlin")
     }
@@ -92,13 +90,12 @@ subprojects {
         outputFormat = "javadoc"
         outputDirectory = "$buildDir/dokka"
 
-        //TODO: wait dokka support JDK11 - https://github.com/Kotlin/dokka/issues/428
-        //TODO: wait dokka fix https://github.com/Kotlin/dokka/issues/464
+        //TODO: wait dokka fix https://github.com/Kotlin/dokka/issues/294
         enabled = false
     }
 
     val dokkaJar by tasks.creating(Jar::class) {
-        classifier = "javadoc"
+        archiveClassifier.set("javadoc")
 
         from(dokkaTask.outputDirectory)
         dependsOn(dokkaTask)
@@ -184,7 +181,7 @@ subprojects {
     tasks {
         withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
         withType<Test> {
